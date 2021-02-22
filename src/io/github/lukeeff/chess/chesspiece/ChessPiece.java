@@ -7,19 +7,32 @@ abstract public class ChessPiece {
 
     private int rowPosition;
     private int columnPosition;
-    public final boolean canJump;
+    private final boolean jumper;
+    private final boolean allowedBackwardsMove;
+    private final boolean allowedDiagonalMove;
+    private final boolean allowedSidewaysMove;
+
 
     /**
      * Initializes a chess piece object.
-     *
      * @param rowPosition the row position of the piece.
      * @param columnPosition the column position of the piece.
-     * @param canJump does the piece jump over pieces.
+     * @param jumper does the piece jump over pieces.
+     * @param allowedBackwardsMove is piece allowed to move backwards.
+     * @param allowedDiagonalMove is piece allowed to move diagonal.
+     * @param allowedSidewaysMove is piece allowed to move sideways.
      */
-    public ChessPiece(int rowPosition, int columnPosition, boolean canJump) {
-        this.canJump = canJump;
+    public ChessPiece(int rowPosition, int columnPosition, boolean jumper, boolean allowedBackwardsMove, boolean allowedDiagonalMove, boolean allowedSidewaysMove) {
+        this.jumper = jumper;
         this.columnPosition = columnPosition;
         this.rowPosition = rowPosition;
+        this.allowedBackwardsMove = allowedBackwardsMove;
+        this.allowedDiagonalMove = allowedDiagonalMove;
+        this.allowedSidewaysMove = allowedSidewaysMove;
+    }
+
+    public boolean isJumper() {
+        return jumper;
     }
 
     public int getRowPosition() {
@@ -36,5 +49,22 @@ abstract public class ChessPiece {
 
     public void setColumnPosition(int columnPosition) {
         this.columnPosition = columnPosition;
+    }
+
+    public void setPosition(int rowPosition, int columnPosition) {
+        this.rowPosition = rowPosition;
+        this.columnPosition = columnPosition;
+    }
+
+    public boolean isAllowedBackwardsMove() {
+        return allowedBackwardsMove;
+    }
+
+    public boolean isAllowedDiagonalMove() {
+        return allowedDiagonalMove;
+    }
+
+    public boolean isAllowedSidewaysMove() {
+        return allowedSidewaysMove;
     }
 }

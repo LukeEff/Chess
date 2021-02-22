@@ -1,5 +1,7 @@
 package io.github.lukeeff.chess.chesspiece;
 
+import java.awt.*;
+
 /**
  * The GCF's of chess pieces!
  */
@@ -11,7 +13,8 @@ abstract public class ChessPiece {
     private final boolean allowedBackwardsMove;
     private final boolean allowedDiagonalMove;
     private final boolean allowedSidewaysMove;
-
+    private final String initial;
+    private final String name;
 
     /**
      * Initializes a chess piece object.
@@ -22,13 +25,15 @@ abstract public class ChessPiece {
      * @param allowedDiagonalMove is piece allowed to move diagonal.
      * @param allowedSidewaysMove is piece allowed to move sideways.
      */
-    public ChessPiece(int rowPosition, int columnPosition, boolean jumper, boolean allowedBackwardsMove, boolean allowedDiagonalMove, boolean allowedSidewaysMove) {
+    public ChessPiece(final int rowPosition, final int columnPosition, final boolean jumper, final boolean allowedBackwardsMove, final boolean allowedDiagonalMove, final boolean allowedSidewaysMove, final String name, final String initial) {
         this.jumper = jumper;
         this.columnPosition = columnPosition;
         this.rowPosition = rowPosition;
         this.allowedBackwardsMove = allowedBackwardsMove;
         this.allowedDiagonalMove = allowedDiagonalMove;
         this.allowedSidewaysMove = allowedSidewaysMove;
+        this.initial = initial;
+        this.name = name;
     }
 
     public boolean isJumper() {
@@ -67,4 +72,26 @@ abstract public class ChessPiece {
     public boolean isAllowedSidewaysMove() {
         return allowedSidewaysMove;
     }
+
+    public String getInitial() {
+        return initial;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String toString() {
+        final Color green = Color.GREEN;
+        final String nl = "\n";
+        final String name = green + "Name: " + getName() + nl;
+        final String initial = green + "Initial: " + getInitial() + nl;
+        final String rowPos = green + "Row position: " + getRowPosition() + nl;
+        final String colPos = green + "Column position: " + getColumnPosition() + nl;
+        final String backwards = green + "allowedBackwardsMove: " + isAllowedBackwardsMove() + nl;
+        final String diagonal = green + "allowedDiagonalMove: " + isAllowedDiagonalMove() + nl;
+        final String sideways = green + "allowedSidewaysMove: " + isAllowedSidewaysMove() + nl;
+        return name + initial + rowPos + colPos + backwards + diagonal + sideways;
+    }
+
 }

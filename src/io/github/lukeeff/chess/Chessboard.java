@@ -3,6 +3,8 @@ package io.github.lukeeff.chess;
 import io.github.lukeeff.chess.chesspiece.ChessPiece;
 import io.github.lukeeff.chess.chesspiece.action.ChessMove;
 
+import java.awt.*;
+
 /**
  * This is the class responsible for initializing a chessboard.
  */
@@ -194,4 +196,30 @@ public class Chessboard {
         return withinLowerLimit && withinUpperLimit;
     }
 
+    public String toString() {
+        Color green = Color.GREEN;
+        final String nl = "\n";
+        final String boardDimensions = green + "Board dimensions: " + nl;
+        final String rows = green + "Number of rows: " + getRowSize() + nl;
+        final String columns = green + "Number of columns: " + getRowSize() + nl;
+        final String boardData = nl + green + "Board contents: " + nl + getChessBoardString();
+        return boardDimensions + rows + columns + boardData;
+     }
+
+    /**
+     * Makes a nice looking string to show what the chessboard looks like.
+     *
+     * @return a string representation of the chessboard
+     */
+     public String getChessBoardString() {
+        StringBuilder boardString = new StringBuilder();
+        for(int i = 0; i < getColumnSize(); i++) {
+            boardString.append(Color.ORANGE).append("[");
+            for(int j = 0; j < getRowSize(); j++) {
+                boardString.append(getBoard()[j][i].getInitial()).append(", ");
+            }
+            boardString.append(Color.ORANGE).append("]\n");
+        }
+        return boardString.toString();
+     }
 }

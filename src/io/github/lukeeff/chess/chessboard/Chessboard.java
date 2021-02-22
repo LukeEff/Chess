@@ -1,4 +1,4 @@
-package io.github.lukeeff.chess;
+package io.github.lukeeff.chess.chessboard;
 
 import io.github.lukeeff.chess.chesspiece.ChessPiece;
 import io.github.lukeeff.chess.chesspiece.action.ChessMove;
@@ -15,10 +15,15 @@ public class Chessboard {
     private final ChessPiece[][] board;
 
     public Chessboard(final int rows, final int columns) {
-        this.columns = columns;
-        this.rows = rows;
-        board = new ChessPiece[rows][columns];
+        this(new BoardPrint(rows, columns));
     }
+
+    public Chessboard(final BoardPrint boardPrint) {
+        this.columns = boardPrint.getColumns();
+        this.rows = boardPrint.getRows();
+        this.board = boardPrint.getBoard();
+    }
+
 
     public int getRowSize() {
         return rows;

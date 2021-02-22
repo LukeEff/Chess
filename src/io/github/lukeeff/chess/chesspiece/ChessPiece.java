@@ -24,6 +24,8 @@ abstract public class ChessPiece {
      * @param allowedBackwardsMove is piece allowed to move backwards.
      * @param allowedDiagonalMove is piece allowed to move diagonal.
      * @param allowedSidewaysMove is piece allowed to move sideways.
+     * @param name the name of the piece.
+     * @param initial the initial of the piece.
      */
     public ChessPiece(final int rowPosition, final int columnPosition, final boolean jumper, final boolean allowedBackwardsMove, final boolean allowedDiagonalMove, final boolean allowedSidewaysMove, final String name, final String initial) {
         this.jumper = jumper;

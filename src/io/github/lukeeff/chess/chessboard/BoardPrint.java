@@ -116,6 +116,4 @@ public class BoardPrint {
             getBoard()[i][column] = pieces[i];
         }
     }
-
-
 }

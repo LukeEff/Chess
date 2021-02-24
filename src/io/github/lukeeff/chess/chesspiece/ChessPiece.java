@@ -92,6 +92,13 @@ abstract public class ChessPiece {
         return team;
     }
 
+    public String getSpriteName() {
+        final String team = getTeam().toString().toLowerCase();
+        final String name = getName().toLowerCase();
+        final String fileType = ".png";
+        return team + "_" + name + fileType;
+    }
+
     public String toString() {
         final String nl = "\n";
         final String name = "Name: " + getName() + nl;

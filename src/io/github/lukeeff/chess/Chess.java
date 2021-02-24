@@ -2,24 +2,22 @@ package io.github.lukeeff.chess;
 
 import io.github.lukeeff.chess.chessboard.BoardPrint;
 import io.github.lukeeff.chess.chessboard.Chessboard;
-import io.github.lukeeff.chess.chesspiece.Pawn;
+import io.github.lukeeff.chess.chesspiece.*;
 import io.github.lukeeff.chess.graphics.ChessGraphics;
 
 public class Chess {
 
-    public static final int WIDTH = 640, HEIGHT = WIDTH / 12 * 9;
+    BoardPrint boardPrint = new BoardPrint();
+    public static final int WIDTH = 500, HEIGHT = 400;
     private final Chessboard chessboard;
 
     public Chess() {
-        BoardPrint boardPrint = new BoardPrint();
 
-        for(int i = 0; i < boardPrint.getRows(); i++) {
-            boardPrint.addPiece(new Pawn(i,1, Team.BLACK));
-            boardPrint.addPiece(new Pawn(i,6, Team.WHITE));
-        }
 
+
+        setUpBoard();
         this.chessboard = new Chessboard(boardPrint);
-        ChessGraphics graphics = new ChessGraphics(this, 500,500);
+        ChessGraphics graphics = new ChessGraphics(this, WIDTH, HEIGHT);
         System.out.println(chessboard);
     }
 
@@ -29,5 +27,32 @@ public class Chess {
 
     public Chessboard getChessboard() {
         return chessboard;
+    }
+
+    private void setUpBoard() {
+        setupPawns();
+        boardPrint.addPiece(new Rook(0, 0, Team.BLACK));
+        boardPrint.addPiece(new Rook(7, 0, Team.BLACK));
+        boardPrint.addPiece(new Rook(0, 7, Team.WHITE));
+        boardPrint.addPiece(new Rook(7, 7, Team.WHITE));
+        boardPrint.addPiece(new Knight(1, 0, Team.BLACK));
+        boardPrint.addPiece(new Knight(6, 0, Team.BLACK));
+        boardPrint.addPiece(new Knight(1, 7, Team.WHITE));
+        boardPrint.addPiece(new Knight(6, 7, Team.WHITE));
+        boardPrint.addPiece(new Bishop(5, 0, Team.BLACK));
+        boardPrint.addPiece(new Bishop(2, 0, Team.BLACK));
+        boardPrint.addPiece(new Bishop(5, 7, Team.WHITE));
+        boardPrint.addPiece(new Bishop(2, 7, Team.WHITE));
+        boardPrint.addPiece(new King(3, 0, Team.BLACK));
+        boardPrint.addPiece(new King(3, 7, Team.WHITE));
+        boardPrint.addPiece(new Queen(4, 0, Team.BLACK));
+        boardPrint.addPiece(new Queen(4, 7, Team.WHITE));
+    }
+
+    private void setupPawns() {
+        for(int i = 0; i < boardPrint.getRows(); i++) {
+            boardPrint.addPiece(new Pawn(i,1, Team.BLACK));
+            boardPrint.addPiece(new Pawn(i,6, Team.WHITE));
+        }
     }
 }

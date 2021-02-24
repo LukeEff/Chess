@@ -9,7 +9,7 @@ public class Queen extends ChessPiece {
      * @param rowPosition          the row position of the piece.
      * @param columnPosition       the column position of the piece.
      */
-    public Queen(int rowPosition, int columnPosition, String name, String initial, Team team) {
+    public Queen(int rowPosition, int columnPosition, Team team) {
         super(rowPosition, columnPosition, false, true, true, true, "Queen", "Q", team);
     }
 }

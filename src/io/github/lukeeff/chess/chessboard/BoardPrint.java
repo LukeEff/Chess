@@ -14,6 +14,10 @@ public class BoardPrint {
     private int columns;
     private ChessPiece[][] board;
 
+    public BoardPrint() {
+        this(8,8);
+    }
+
     public BoardPrint(final int rows, final int columns) {
         this(new ChessPiece[rows][columns]);
     }
@@ -52,6 +56,16 @@ public class BoardPrint {
         this.board = board;
         rows = board.length;
         columns = board[0].length;
+    }
+
+    public void addPieces(ChessPiece[] pieces) {
+        for(ChessPiece piece : pieces) {
+            addPiece(piece);
+        }
+    }
+
+    public void addPiece(ChessPiece piece) {
+        getBoard()[piece.getRowPosition()][piece.getColumnPosition()] = piece;
     }
 
     /**
@@ -100,6 +114,7 @@ public class BoardPrint {
         final int columns = Math.min(getRows(), pieces.length);
         for(int i = 0; i < columns; i++) {
             getBoard()[row][i] = pieces[i];
+            pieces[i].setPosition(row, i);
         }
     }
 
@@ -114,6 +129,7 @@ public class BoardPrint {
         final int rows = Math.min(getColumns(), pieces.length);
         for(int i = 0; i < rows; i++) {
             getBoard()[i][column] = pieces[i];
+            pieces[i].setPosition(i,column);
         }
     }
 }

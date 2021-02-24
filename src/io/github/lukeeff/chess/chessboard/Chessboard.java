@@ -49,6 +49,17 @@ public class Chessboard {
     }
 
     /**
+     * Get a piece from the chessboard.
+     *
+     * @param row the row the piece is in.
+     * @param column the column the piece is in.
+     * @return the piece where the row and column intersect.
+     */
+    public ChessPiece getPiece(int row, int column) {
+        return getBoard()[row][column];
+    }
+
+    /**
      * Updates the positional data of a piece.
      *
      * @param chessMove the chess move being performed.
@@ -202,12 +213,11 @@ public class Chessboard {
     }
 
     public String toString() {
-        Color green = Color.GREEN;
         final String nl = "\n";
-        final String boardDimensions = green + "Board dimensions: " + nl;
-        final String rows = green + "Number of rows: " + getRowSize() + nl;
-        final String columns = green + "Number of columns: " + getRowSize() + nl;
-        final String boardData = nl + green + "Board contents: " + nl + getChessBoardString();
+        final String boardDimensions = "Board dimensions: " + nl;
+        final String rows = "Number of rows: " + getRowSize() + nl;
+        final String columns = "Number of columns: " + getRowSize() + nl;
+        final String boardData = "Board contents: " + nl + getChessBoardString();
         return boardDimensions + rows + columns + boardData;
      }
 
@@ -219,11 +229,18 @@ public class Chessboard {
      public String getChessBoardString() {
         StringBuilder boardString = new StringBuilder();
         for(int i = 0; i < getColumnSize(); i++) {
-            boardString.append(Color.ORANGE).append("[");
+            boardString.append("[");
             for(int j = 0; j < getRowSize(); j++) {
-                boardString.append(getBoard()[j][i].getInitial()).append(", ");
+                if(getBoard()[j][i] == null) {
+                    boardString.append("E");
+                } else {
+                    boardString.append(getBoard()[j][i].getInitial());
+                }
+                if(j < getRowSize() - 1) {
+                    boardString.append(", ");
+                }
             }
-            boardString.append(Color.ORANGE).append("]\n");
+            boardString.append("]\n");
         }
         return boardString.toString();
      }

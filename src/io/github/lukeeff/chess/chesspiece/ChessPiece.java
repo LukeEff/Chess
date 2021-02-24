@@ -1,5 +1,8 @@
 package io.github.lukeeff.chess.chesspiece;
 
+
+import io.github.lukeeff.chess.Team;
+
 import java.awt.*;
 
 /**
@@ -15,6 +18,7 @@ abstract public class ChessPiece {
     private final boolean allowedSidewaysMove;
     private final String initial;
     private final String name;
+    private final Team team;
 
     /**
      * Initializes a chess piece object.
@@ -27,7 +31,7 @@ abstract public class ChessPiece {
      * @param name the name of the piece.
      * @param initial the initial of the piece.
      */
-    public ChessPiece(final int rowPosition, final int columnPosition, final boolean jumper, final boolean allowedBackwardsMove, final boolean allowedDiagonalMove, final boolean allowedSidewaysMove, final String name, final String initial) {
+    public ChessPiece(final int rowPosition, final int columnPosition, final boolean jumper, final boolean allowedBackwardsMove, final boolean allowedDiagonalMove, final boolean allowedSidewaysMove, final String name, final String initial, final Team team) {
         this.jumper = jumper;
         this.columnPosition = columnPosition;
         this.rowPosition = rowPosition;
@@ -36,6 +40,7 @@ abstract public class ChessPiece {
         this.allowedSidewaysMove = allowedSidewaysMove;
         this.initial = initial;
         this.name = name;
+        this.team = team;
     }
 
     public boolean isJumper() {
@@ -83,17 +88,20 @@ abstract public class ChessPiece {
         return name;
     }
 
-    public String toString() {
-        final Color green = Color.GREEN;
-        final String nl = "\n";
-        final String name = green + "Name: " + getName() + nl;
-        final String initial = green + "Initial: " + getInitial() + nl;
-        final String rowPos = green + "Row position: " + getRowPosition() + nl;
-        final String colPos = green + "Column position: " + getColumnPosition() + nl;
-        final String backwards = green + "allowedBackwardsMove: " + isAllowedBackwardsMove() + nl;
-        final String diagonal = green + "allowedDiagonalMove: " + isAllowedDiagonalMove() + nl;
-        final String sideways = green + "allowedSidewaysMove: " + isAllowedSidewaysMove() + nl;
-        return name + initial + rowPos + colPos + backwards + diagonal + sideways;
+    public Team getTeam() {
+        return team;
     }
 
+    public String toString() {
+        final String nl = "\n";
+        final String name = "Name: " + getName() + nl;
+        final String initial = "Initial: " + getInitial() + nl;
+        final String rowPos = "Row position: " + getRowPosition() + nl;
+        final String colPos = "Column position: " + getColumnPosition() + nl;
+        final String backwards = "allowedBackwardsMove: " + isAllowedBackwardsMove() + nl;
+        final String diagonal = "allowedDiagonalMove: " + isAllowedDiagonalMove() + nl;
+        final String sideways = "allowedSidewaysMove: " + isAllowedSidewaysMove() + nl;
+        final String team = "Team: " + getTeam();
+        return name + initial + rowPos + colPos + backwards + diagonal + sideways + team;
+    }
 }

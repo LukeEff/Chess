@@ -212,6 +212,21 @@ public class Chessboard {
         return withinLowerLimit && withinUpperLimit;
     }
 
+    /**
+     * Gets the number of chess squares in this board.
+     * @return the number of chess squares in this board.
+     */
+    public int size() {
+        int count = 0;
+
+        for(int i = 0; i < getRowSize(); i++) {
+            for(int j = 0; j < getColumnSize(); j++) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public String toString() {
         final String nl = "\n";
         final String boardDimensions = "Board dimensions: " + nl;

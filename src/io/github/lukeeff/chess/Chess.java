@@ -10,15 +10,23 @@ public class Chess {
     BoardPrint boardPrint = new BoardPrint();
     public static final int WIDTH = 500, HEIGHT = 400;
     private final Chessboard chessboard;
+    private boolean isWhiteTurn;
 
     public Chess() {
 
-
-
         setUpBoard();
+        this.isWhiteTurn = true;
         this.chessboard = new Chessboard(boardPrint);
         ChessGraphics graphics = new ChessGraphics(this, WIDTH, HEIGHT);
         System.out.println(chessboard);
+    }
+
+    public boolean isWhiteTurn() {
+        return isWhiteTurn;
+    }
+
+    public void setWhiteTurn(boolean whiteTurn) {
+        isWhiteTurn = whiteTurn;
     }
 
     public static void main(String[] args) {
@@ -43,10 +51,10 @@ public class Chess {
         boardPrint.addPiece(new Bishop(2, 0, Team.BLACK));
         boardPrint.addPiece(new Bishop(5, 7, Team.WHITE));
         boardPrint.addPiece(new Bishop(2, 7, Team.WHITE));
-        boardPrint.addPiece(new King(3, 0, Team.BLACK));
-        boardPrint.addPiece(new King(3, 7, Team.WHITE));
-        boardPrint.addPiece(new Queen(4, 0, Team.BLACK));
-        boardPrint.addPiece(new Queen(4, 7, Team.WHITE));
+        boardPrint.addPiece(new King(4, 0, Team.BLACK));
+        boardPrint.addPiece(new King(4, 7, Team.WHITE));
+        boardPrint.addPiece(new Queen(3, 0, Team.BLACK));
+        boardPrint.addPiece(new Queen(3, 7, Team.WHITE));
     }
 
     private void setupPawns() {
